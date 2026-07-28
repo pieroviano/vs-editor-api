@@ -1,17 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project>
-
-  <Import Condition="$(OS) == 'Windows_NT'" Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
-  <Import Condition="$(OS) != 'Windows_NT'" Project="Sdk.props" Sdk="Xamarin.Mac.Sdk" />
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>Microsoft.VisualStudio.Text.BraceCompletion.Implementation</AssemblyName>
     <RootNamespace>$(AssemblyName)</RootNamespace>
     <NoWarn>649;436;$(NoWarn)</NoWarn>
     <AssemblyAttributeClsCompliant>true</AssemblyAttributeClsCompliant>
     <DefineConstants Condition="$(OS) == 'Windows_NT'">$(DefineConstants);WINDOWS</DefineConstants>
-    <TargetFramework>$(TargetFramework)</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+  <Import Condition="$(OS) == 'Windows_NT'" Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <Import Condition="$(OS) != 'Windows_NT'" Project="Sdk.props" Sdk="Xamarin.Mac.Sdk" />
+  <Import Condition="$(OS) == 'Windows_NT'" Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+  <Import Condition="$(OS) != 'Windows_NT'" Project="Sdk.targets" Sdk="Xamarin.Mac.Sdk" />
   <ItemGroup>
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationCore" />
@@ -45,8 +44,4 @@
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-
-  <Import Condition="$(OS) == 'Windows_NT'" Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
-  <Import Condition="$(OS) != 'Windows_NT'" Project="Sdk.targets" Sdk="Xamarin.Mac.Sdk" />
-
 </Project>

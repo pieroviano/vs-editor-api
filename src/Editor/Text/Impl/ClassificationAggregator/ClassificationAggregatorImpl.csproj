@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>Microsoft.VisualStudio.Logic.Text.Classification.Aggregator.Implementation</AssemblyName>
     <RootNamespace>$(AssemblyName)</RootNamespace>
     <NoWarn>649;436;$(NoWarn)</NoWarn>
     <AssemblyAttributeClsCompliant>true</AssemblyAttributeClsCompliant>
-    <TargetFramework>$(TargetFramework)</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

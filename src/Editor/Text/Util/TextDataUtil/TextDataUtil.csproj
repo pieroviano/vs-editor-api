@@ -1,12 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>Microsoft.VisualStudio.Text.Data.Utilities</AssemblyName>
     <RootNamespace>$(AssemblyName)</RootNamespace>
-
     <!-- Need to have a TargetFramework tag for VS to recognize this as an SDK project. Just use the shared one. -->
-    <TargetFramework>$(TargetFramework)</TargetFramework>
-
+    <TargetFramework>netstandard2.0</TargetFramework>
     <NoWarn>649;436;618$(NoWarn)</NoWarn>
     <AssemblyAttributeClsCompliant>true</AssemblyAttributeClsCompliant>
   </PropertyGroup>

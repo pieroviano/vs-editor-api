@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>Microsoft.VisualStudio.Text.Implementation.StandaloneUndo</AssemblyName>
     <RootNamespace>Microsoft.VisualStudio.Text.Operations.Standalone</RootNamespace>
@@ -11,7 +10,7 @@
     <NoRefAssembly>true</NoRefAssembly>
     <IsPackable>true</IsPackable>
     <NonShipping>false</NonShipping>
-    <TargetFramework>$(TargetFramework)</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

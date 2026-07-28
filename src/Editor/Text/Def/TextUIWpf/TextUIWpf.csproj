@@ -1,17 +1,18 @@
-<Project>
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <!-- workaround for https://github.com/NuGet/Home/issues/5894 -->
     <OriginalProjectName>TextUIWpf</OriginalProjectName>
   </PropertyGroup>
-  <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.props" />
   <PropertyGroup>
     <AssemblyName>Microsoft.VisualStudio.Text.UI.Wpf</AssemblyName>
     <RootNamespace>$(AssemblyName)</RootNamespace>
     <PushToPublicFeed>true</PushToPublicFeed>
     <NoWarn>649;436;8073;$(NoWarn)</NoWarn>
     <AssemblyAttributeClsCompliant>true</AssemblyAttributeClsCompliant>
-    <TargetFramework>$(TargetFramework)</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+  <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.props" />
+  <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
   <ItemGroup>
     <Page Remove="themes\generic.xaml" />
   </ItemGroup>
@@ -32,5 +33,4 @@
     <ProjectReference Include="..\TextLogic\TextLogic.csproj" />
     <ProjectReference Include="..\TextUI\TextUI.csproj" />
   </ItemGroup>
-  <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
 </Project>
