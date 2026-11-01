@@ -23,6 +23,24 @@
     <ProjectReference Include="$(RepoSrcEditorPath)Text\Test\Util\StandaloneEditorCocoa\StandaloneEditorCocoa.csproj"/>
   </ItemGroup>
 
+  <!--
+    Linux and other non-Windows, non-macOS hosts have neither WPF nor the Xamarin.Mac FPF
+    (which uses AppKit), so compile against the .NET Framework WPF reference assemblies.
+    They are reference-only: not copied to the output, and WPF code paths are not usable at run time.
+  -->
+  <PropertyGroup>
+    <UseWpfReferenceAssemblies Condition="'$(UseWpfReferenceAssemblies)' == '' And '$(OS)' != 'Windows_NT' And !$([MSBuild]::IsOSPlatform('OSX'))">true</UseWpfReferenceAssemblies>
+    <UseWpfReferenceAssemblies Condition="'$(UseWpfReferenceAssemblies)' == ''">false</UseWpfReferenceAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$(UseWpfReferenceAssemblies)">
+    <PackageReference
+      Include="Microsoft.NETFramework.ReferenceAssemblies.net472"
+      ExcludeAssets="all"
+      PrivateAssets="all"
+      GeneratePathProperty="true"/>
+  </ItemGroup>
+
   <Import Project="PackageVersions.targets"/>
 
   <Target Name="DumpPaths">
@@ -78,6 +96,23 @@
       <Reference Remove="UIAutomationClient"/>
       <Reference Remove="UIAutomationProvider"/>
       <Reference Remove="UIAutomationTypes"/>
+    </ItemGroup>
+  </Target>
+
+  <!-- WPF reference assemblies on non-Windows, non-macOS hosts: see UseWpfReferenceAssemblies above -->
+  <Target
+    Name="PrepareWpfReferenceAssemblies"
+    BeforeTargets="ResolveAssemblyReferences"
+    Condition="$(UseWpfReferenceAssemblies)">
+    <PropertyGroup>
+      <WpfReferenceAssembliesPath>$(PkgMicrosoft_NETFramework_ReferenceAssemblies_net472)\build\.NETFramework\v4.7.2\</WpfReferenceAssembliesPath>
+    </PropertyGroup>
+    <ItemGroup>
+      <Reference
+        Condition="'%(Identity)' == 'WindowsBase' Or '%(Identity)' == 'PresentationCore' Or '%(Identity)' == 'PresentationFramework' Or '%(Identity)' == 'UIAutomationClient' Or '%(Identity)' == 'UIAutomationProvider' Or '%(Identity)' == 'UIAutomationTypes'">
+        <HintPath>$(WpfReferenceAssembliesPath)%(Identity).dll</HintPath>
+        <Private>false</Private>
+      </Reference>
     </ItemGroup>
   </Target>
 

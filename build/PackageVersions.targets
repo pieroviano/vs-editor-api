@@ -11,6 +11,11 @@
     <PackageReference Update="System.Collections.Immutable" Version="1.5.0"/>
   </ItemGroup>
 
+  <!-- WPF reference assemblies for non-Windows, non-macOS builds (see Project.targets) -->
+  <ItemGroup>
+    <PackageReference Update="Microsoft.NETFramework.ReferenceAssemblies.net472" Version="1.0.3"/>
+  </ItemGroup>
+
   <!-- Used only by src/Editor/Language/Def/Language/CodeLens/Remoting -->
   <ItemGroup>
     <PackageReference Update="Newtonsoft.Json" Version="9.0.1"/>
